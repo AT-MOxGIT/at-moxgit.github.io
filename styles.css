@@ -1,0 +1,235 @@
+body {
+    font-family: 'Indie Flower', cursive;
+    color: white;
+    background-color: gray;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 1s;
+    overflow: hidden;
+    /* background-color: rgba(255, 105, 180, 0.5); */
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    padding: 5px 0; /* Padding atas dan bawah (opsional) */
+}
+.consent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Agar teks dan tombol ditengah-tengahkan */
+    background-color: rgba(0, 0, 0, 0.8); /* Latar belakang putih dengan sedikit transparansi */
+    padding: 20px; /* Padding di sekitar konten */
+    border-radius: 10px; /* Sudut melengkung */
+    z-index: 1000; /* Pastikan muncul di atas konten lain */
+    position: absolute; /* Posisi absolut agar tidak mengganggu layout konten lain */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Pusatkan elemen */
+}
+
+#consent{
+    display: none;
+}
+
+.centered-content {
+    text-align: center;
+    position: relative; 
+    width: 100%; /* Lebar penuh viewport */
+    height: 100vh; /* Tinggi penuh viewport */
+    display: flex; /* Flexbox untuk centering */
+    flex-direction: column; /* Elemen diatur secara vertikal */
+    justify-content: center; /* Pusatkan elemen secara vertikal */
+    align-items: center; /* Pusatkan elemen secara horizontal */
+}
+
+.heart-icon {
+    font-size: 50px;
+    animation: heartbeat 1s infinite;
+    cursor: pointer;
+    position: relative; /* Ubah ini menjadi relatif */
+    z-index: 2; /* Pastikan berada di atas teks */
+    margin-bottom: 20px; /* Jarak antara ikon hati dan teks */
+    transition: transform 1s, top 1s, left 1s; /* Tambahkan transisi untuk top dan left */
+}
+
+h1 {
+    z-index: 1;
+    background-color: black; /* latar belakang hitam */
+    color: white; /* warna teks putih agar terbaca dengan jelas di atas latar belakang hitam */
+    padding: 5px; /* padding untuk memberikan ruang antara teks dan tepi latar belakang hitam */
+    border-radius: 5px; /* membuat sudut latar belakang melengkung */
+}
+
+
+
+/* Animasi detak jantung */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+        color: darkred;
+    }
+    50% {
+        transform: scale(1.1);
+        color: pink;
+    }
+    100% {
+        transform: scale(1);
+        color: darkred;
+    }
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-100%);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh);
+        opacity: 0.5;
+    }
+}
+
+.falling-heart {
+    position: absolute;
+    top: -50px;
+    font-size: -50px; /* Anda bisa menyesuaikan ukuran hati */
+    color: pink;
+    animation: falling 5s linear infinite; /* animasi 5 detik dan terus menerus */
+    z-index: 5;
+}
+
+
+.options-container {
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ini memastikan bahwa kontainer memiliki tinggi layar penuh */
+    position: absolute; /* Ini diperlukan untuk memposisikannya di atas semua konten lainnya */
+    top: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+
+button.option-button {
+    position: relative;  /* Ini memungkinkan Anda mengubah posisi tombol dengan left dan top */
+    transition: top 0.5s, left 0.5s;  /* Animasi perpindahan agar terlihat halus */
+}
+.option-button {
+    font-family: 'Indie Flower', cursive;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    margin: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.yes-button {
+    background-color: white;
+    color: pink;
+}
+
+.no-button {
+    background-color: white;
+    color: pink;
+}
+
+.sentence-text {
+    font-size: 24px;
+    transition: opacity 0.5s, transform 0.5s; /* Menambahkan transisi untuk transform */
+    opacity: 0; /* Mulai dengan transparan */
+    transform: scale(1); /* Mulai dengan skala normal */
+}
+
+.sentences-container {
+    border: none;
+    padding: 25px;
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5);  /* Background hitam dengan sedikit transparan */
+    z-index: 10;  /* Pastikan berada di atas animasi hati yang jatuh tetapi di bawah elemen lainnya */  
+}
+
+.video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;  /* untuk memastikan video berada di belakang konten lain */
+    object-fit: cover; /* untuk memastikan video menutupi seluruh viewport */
+    filter: brightness(50%) blur(5px); /* efek blur */
+}
+
+#heart-group {
+    display: none;
+    position: absolute;  
+    top: 25%;    /* 50% dari atas, menuju tengah */
+    left: 50%;   /* 50% dari kiri, menuju tengah */
+    transform: translate(-50%, -50%); /* menggeser elemen ke tengah dengan tepat */
+    border-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.5); 
+    z-index: 11;
+}
+
+#heart-group .heart-icon {
+    margin: 0 10px; /* memberi margin kiri dan kanan sebesar 10px */
+}
+
+.h4-social-media {
+    color: white;
+    position: absolute;   /* Mengatur posisi elemen secara mutlak */
+    top: 15%;             /* Jarak dari atas */
+    left: 50%;            /* Pusat elemen secara horizontal */
+    transform: translate(-50%, -50%);  /* Untuk memastikan elemen ditempatkan di tengah tepat di posisi yang Anda tentukan */
+    z-index: 1000;        /* Memastikan elemen muncul di atas elemen lain */
+}
+
+
+.transparent-background {
+    background-color: transparent;
+}
+.transparent-background * { /* Mengatur semua elemen child dari form menjadi transparan */
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important; /* Menghapus shadow jika ada */
+}
+.form-above-hearts {
+    position: absolute;
+    top: 15%;  /* Anda bisa menyesuaikan persentase ini untuk mengatur tinggi */
+    left: 50%; 
+    transform: translate(-50%, -50%);  /* Mengatur form ke tengah secara horizontal */
+    z-index: 15; /* Agar form berada di atas elemen lainnya */
+}
+
+/* Definisi untuk input text */
+.input-text {
+    font-size: 18px;              
+    color: white;                
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid pink;      
+    border-radius: 10px;         
+    padding: 10px 15px;          
+    width: 250px;                
+    text-align: center;          
+    outline: none;               
+    margin-bottom: 5px;             
+    transition: border-color 0.3s;
+    font-weight: bold;           /* Tambahkan baris ini */
+}
+
+/* Efek saat input difokuskan */
+.input-text:focus {
+    border-color: lightpink;
+}
